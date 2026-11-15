@@ -1,0 +1,7 @@
+\section{Relación con la Unidad 1}
+
+\begin{description}[leftmargin=0pt,itemsep=2pt,topsep=2pt]
+  \item[Transparencia rota.] Se rompió la transparencia de ubicación. Los servidores seguían encendidos, pero sin DNS ningún cliente podía saber dónde estaban \cite{meta_detalles}. También se rompió la transparencia de fallos: un problema interno de la red troncal lo vio todo el mundo.
+  \item[Propiedad de CAP sacrificada.] La disponibilidad (A). Al cortarse la red troncal, los centros de datos quedaron partidos, y en una partición hay que elegir entre consistencia y disponibilidad \cite{brewer2012}. Los servidores DNS prefirieron retirarse antes que dar direcciones de centros de datos que no podían alcanzar \cite{meta_detalles}. Así no entregaron respuestas incorrectas, pero dejaron a todos sin servicio.
+  \item[Tolerancia a fallos que falló.] La detección de fallos funcionó, pero empeoró el problema. Cada servidor DNS revisa su conexión con los centros de datos, como un \emph{heartbeat}, y se retira si la pierde. Como el fallo era de la red común, todos se retiraron a la vez y la redundancia de tener muchos centros de datos no sirvió. Es un patrón conocido: un estudio de 597 caídas en 32 servicios de Internet analiza por qué siguen ocurriendo aunque haya redundancia en todas partes \cite{gunawi2016}. La herramienta de auditoría tampoco detuvo el comando, y la red fuera de banda no dio acceso para reparar \cite{meta_detalles}.
+\end{description}

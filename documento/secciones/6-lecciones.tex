@@ -1,0 +1,20 @@
+\section{Lecciones aprendidas para nuestro PFC}
+
+Nuestro PFC es el sistema de gestión de presustentaciones de la UTEQ: Angular, Spring Boot con JWT y PostgreSQL. Ahí los estudiantes suben su anteproyecto en PDF y los docentes registran sus evaluaciones. La tabla~\ref{tab:riesgos} muestra tres riesgos que podrían provocar un fallo parecido al de Facebook.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.1}
+\caption{Riesgos del PFC y medida preventiva que incorporaremos en TA-PFC-E1.}
+\label{tab:riesgos}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.27\linewidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.33\linewidth}@{}}
+\toprule
+\textbf{Riesgo} & \textbf{Parecido con Facebook} & \textbf{Medida en TA-PFC-E1} \\
+\midrule
+Aplicar en producción un script de \texttt{docs/migraciones} sin probarlo. & Como el comando de mantenimiento: un cambio de rutina tumba todo. Con \texttt{ddl-auto=validate}, si el esquema no coincide, el backend no arranca. & Probar cada migración en una copia de la base, hacer un respaldo con \texttt{pg\_dump} antes y tener el script para revertirla. \\
+Un solo backend, una sola base de datos y los PDF en el disco del servidor. & Como el \emph{backbone}: todo depende de un componente común, y si cae, nadie sube anteproyectos ni registra notas. & Respaldo automático diario de la base y de \texttt{uploads/}, y un \emph{health check} con Spring Boot Actuator que avise de la caída. \\
+El acceso de administración pasa por el mismo login JWT. & Como los ingenieros sin acceso remoto: si falla la autenticación o cambia \texttt{JWT\_SECRET}, ni el administrador puede entrar a corregir. & Un procedimiento de acceso de emergencia (SSH al servidor y a la base) documentado fuera del sistema y probado. \\
+\bottomrule
+\end{tabularx}
+\end{table}
