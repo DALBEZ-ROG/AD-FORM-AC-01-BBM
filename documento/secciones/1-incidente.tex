@@ -1,0 +1,23 @@
+\section{Descripción del incidente}
+
+El 4 de octubre de 2021, Facebook, Instagram y WhatsApp desaparecieron de Internet en todo el mundo durante casi seis horas \cite{cloudflare2021}. Durante un mantenimiento de rutina, un comando que debía medir la capacidad de la red troncal global (el \emph{backbone} que une los centros de datos de Meta) cortó todas sus conexiones. Al quedarse sin red, los servidores DNS de Meta retiraron sus anuncios BGP, y el resto de Internet ya no pudo encontrar ningún servidor de la empresa, aunque seguían encendidos \cite{meta_detalles}. Las herramientas internas que los ingenieros usan para diagnosticar también se cayeron \cite{meta_actualizacion}.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\caption{Línea de tiempo (hora UTC; en Ecuador son 5 horas menos), según \cite{cloudflare2021}.}
+\label{tab:linea}
+\begin{tabular}{@{}l p{0.78\linewidth}@{}}
+\toprule
+\textbf{Hora} & \textbf{Evento} \\
+\midrule
+15:40 & Pico de cambios de rutas BGP desde la red de Facebook. \\
+15:50 & \texttt{facebook.com} deja de resolver en el DNS público 1.1.1.1. \\
+15:58 & Facebook deja de anunciar las rutas hacia los prefijos de sus servidores DNS. \\
+21:00 & Vuelve la actividad BGP de Facebook (pico a las 21:17). \\
+21:20 & \texttt{facebook.com} vuelve a resolver. \\
+21:28 & Facebook está reconectado a Internet y su DNS funciona de nuevo. \\
+\bottomrule
+\end{tabular}
+\end{table}
