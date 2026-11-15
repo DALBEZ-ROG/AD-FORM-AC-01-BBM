@@ -1,0 +1,62 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[american,spanish,es-tabla]{babel}
+\usepackage[margin=1.8cm]{geometry}
+\usepackage{lmodern}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\titleformat*{\section}{\large\bfseries}
+\titlespacing*{\section}{0pt}{8pt}{3pt}
+\usepackage[font=small,skip=4pt]{caption}
+\usepackage[backend=biber,style=ieee,autolang=other]{biblatex}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\addbibresource{referencias.bib}
+\DeclareFieldFormat{sentencecase}{#1}
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+\setlength{\textfloatsep}{8pt}
+\setlength{\intextsep}{6pt}
+\setkeys{Gin}{height=10cm,keepaspectratio}
+
+\newcommand{\seccion}[1]{\IfFileExists{secciones/#1.tex}{\input{secciones/#1}}{\section{Falta \texttt{secciones/#1.tex}}}}
+
+\begin{document}
+
+\begin{center}
+  {\small Universidad Técnica Estatal de Quevedo -- Carrera de Software -- Aplicaciones Distribuidas (ISR-701), paralelo B\par}
+  \vspace{4pt}
+  {\Large\bfseries FORM-AC-01: La caída de Facebook del 4 de octubre de 2021\par}
+  \vspace{2pt}
+  {\normalsize Análisis de caso de un fallo real en un sistema distribuido\par}
+  \vspace{4pt}
+  {\small Benites Pérez Dariem Alberto \quad Bueno Troya Erwin Daniel \quad Mendoza Villarroel Elian Jossue\par}
+  {\small 15 de noviembre de 2026\par}
+\end{center}
+
+\seccion{1-incidente}
+\seccion{2-causas}
+\seccion{3-impacto}
+\seccion{4-unidad1}
+\seccion{5-mitigacion}
+\seccion{6-lecciones}
+
+\printbibliography[title={Referencias}]
+
+\section*{Declaración de uso de inteligencia artificial}
+
+\noindent
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}l >{\raggedright\arraybackslash}X@{}}
+  Herramienta: & Claude (Anthropic), modelo Claude Opus 5.5, en la aplicación Claude Code. \\
+  Para qué se usó: & Buscó el informe oficial de Meta y las demás fuentes, redactó las seis secciones del análisis (línea de tiempo, causas, cálculo del impacto, relación con la Unidad 1, mitigación y tabla de riesgos del PFC) e hizo un diagrama de Ishikawa de referencia que redibujamos en draw.io. También armó el \LaTeX{}, la bibliografía, la carátula y el borrador del README. Al final revisó nuestro Ishikawa: corrigió dos textos (\enquote{red social} por \enquote{red troncal} y una causa repetida en Procesos), puso en negrita el título Personas y lo exportó a PDF. \\[3pt]
+  Cómo se verificó: & Cada DOI se comprobó en Crossref (autores, año, título, revista o congreso, volumen y páginas). Las páginas de Meta, Cloudflare y la SEC se abrieron, y cada hora y cada cifra del documento se comparó con su fuente. El cálculo de la pérdida económica y de la disponibilidad se rehízo a mano. Los textos corregidos del Ishikawa se contrastaron con el informe de Meta.
+\end{tabularx}
+
+\end{document}
